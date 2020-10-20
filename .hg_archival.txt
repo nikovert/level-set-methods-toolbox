@@ -1,0 +1,6 @@
+repo: 5a7ae2892780945de959b0e876998123d6868ef0
+node: a09a844e622993ee1934a8685e8af4b00bf5aa6c
+branch: default
+latesttag: ToolboxLS-1.1.1
+latesttagdistance: 1
+changessincelatesttag: 1
