@@ -14,17 +14,6 @@ releases.  If you want to run on very old releases of Matlab, you may
 need to remove certain recent language features by hand (eg: the ~
 parameter, && short-circuit boolean operator).
 
-If you got these files from the ToolboxLS web page in zip archive, you
-can find the most recent version of ToolboxLS (including bug fixes)
-at this Mercurial repository:
-
-    https://bitbucket.org/ian_mitchell/toolboxls
-
-If you are downloading from this repository, you can choose between
-the tagged versions or the tip.  Normally we suggest choosing the most
-recent tagged version -- it is most likely to be stable, but it may be
-missing some bug fixes.
-
 Before using ToolboxLS, you will need to edit one configuration file
 as follows.  Go into the Examples/ subdirectory.  There you will find
 a file:
