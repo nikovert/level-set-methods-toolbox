@@ -115,7 +115,7 @@ function [ t, y, schemeData ] = ...
     t = tspan(1);
     steps = 0;
     startTime = cputime;
-    stepBound = zeros(numY, 1);
+    stepBound = zeros(numY, 1, class(y0));
     ydot = cell(numY, 1);
     y = y0;
     
