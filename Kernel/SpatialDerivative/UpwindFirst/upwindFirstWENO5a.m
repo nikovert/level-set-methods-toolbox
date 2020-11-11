@@ -59,8 +59,8 @@ end
 % Compared to 'constant' (fastest), 'maxOverGrid' is about ~3% slower
 %   and 'maxOverNeighbors' about ~17% slower.
 % 'maxOverNeighbors' is the recommended method in O&F equation (3.38).
-%epsilonCalculationMethod = 'constant';
-%epsilonCalculationMethod = 'maxOverGrid';
+% epsilonCalculationMethod = 'constant';
+% epsilonCalculationMethod = 'maxOverGrid';
 epsilonCalculationMethod = 'maxOverNeighbors';
 
 %---------------------------------------------------------------------------
@@ -152,7 +152,7 @@ else
     epsilonR = epsilonL;
    case 'maxOverGrid'
     D1squared = D1.^2;
-    epsilonL = 1e-6 * max(D1squared(:)) + 1e-18;
+    epsilonL = 1e-6 * max(D1squared(:)) + 1e-99;
     epsilonR = epsilonL;
    case 'maxOverNeighbors'
     % Implements (3.38) in O&F for computing epsilon.
@@ -161,7 +161,11 @@ else
     for i = 2 : length(indices)
       epsilon = max(epsilon, D1squared(indices{i}{:}));
     end
-    epsilon = 1e-6 * epsilon + 1e-18;
+    if isa(epsilon, 'single')
+        epsilon = 1e-6 * epsilon + 1e-18;
+    else
+        epsilon = 1e-8 * epsilon + 1e-99;
+    end
     epsilonL = epsilon(indices1{:});
     epsilonR = epsilon(indices2{:});
    otherwise
@@ -188,6 +192,6 @@ function deriv = weightWENO(d, s, w, epsilon)
 alpha1 = w(1) ./ (s{1} + epsilon).^2;
 alpha2 = w(2) ./ (s{2} + epsilon).^2;
 alpha3 = w(3) ./ (s{3} + epsilon).^2;
-sum = min((alpha1 + alpha2 + alpha3), 1e38);
+sum = min((alpha1 + alpha2 + alpha3), realmax(class(epsilon)));
 
 deriv = (alpha1 .* d{1} + alpha2 .* d{2} + alpha3 .* d{3}) ./ sum;
