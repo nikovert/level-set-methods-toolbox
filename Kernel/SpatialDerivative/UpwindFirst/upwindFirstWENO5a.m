@@ -164,7 +164,7 @@ else
     if isa(epsilon, 'single')
         epsilon = 1e-6 * epsilon + 1e-18;
     else
-        epsilon = 1e-8 * epsilon + 1e-99;
+        epsilon = 1e-6 * epsilon + 1e-99;
     end
     epsilonL = epsilon(indices1{:});
     epsilonR = epsilon(indices2{:});
